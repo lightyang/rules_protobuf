@@ -5,8 +5,7 @@ DEPS = {
         "rule": "git_repository",
         "remote": "https://github.com/grpc/grpc.git",
         "init_submodules": True,
-        "commit": "3808b6efe66b87269d43847bc113e94e2d3d28fb",
-        #"tag": "v1.0.1",
+        "tag": "v1.2.3",
     },
 
     # Hooray! The boringssl team provides a "master-with-bazel" branch
