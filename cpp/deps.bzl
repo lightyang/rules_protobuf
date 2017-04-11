@@ -38,10 +38,22 @@ DEPS = {
         "actual": "@com_github_madler_zlib//:zlib",
     },
 
+    # grpc++ expects "//external:protobuf"
+    "protobuf": {
+        "rule": "bind",
+        "actual": "@com_github_google_protobuf//:protobuf",
+    },
+
     # grpc++ expects "//external:protobuf_clib"
     "protobuf_clib": {
         "rule": "bind",
-        "actual": "@com_github_google_protobuf//:protobuf",
+        "actual": "@com_github_google_protobuf//:protoc_lib",
+    },
+
+    # grpc++ expects "//external:protocol_compiler"
+    "protocol_compiler": {
+        "rule": "bind",
+        "actual": "@com_github_google_protobuf//:protoc",
     },
 
     # grpc++ expects //external:nanopb
@@ -57,13 +69,6 @@ DEPS = {
     "protoc_gen_grpc_cpp": {
         "rule": "bind",
         "actual": "@com_github_grpc_grpc//:grpc_cpp_plugin",
-    },
-
-    # Bind the protobuf proto_lib into //external.  Required for
-    # compiling the protoc_gen_grpc plugin
-    "protobuf_compiler": {
-        "rule": "bind",
-        "actual": "@com_github_google_protobuf//:protoc_lib",
     },
 
     # GTest is for our own internal cc tests.
