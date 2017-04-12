@@ -287,17 +287,17 @@ java_proto_library(
   name = 'fooprotos',
   protos = 'foo.proto`,
   imports = [
-      "external/com_github_google_protobuf/src/",
+      "external/com_google_protobuf/src/",
     ],
     inputs = [
-      "@com_github_google_protobuf//:well_known_protos",
+      "@com_google_protobuf//:well_known_protos",
     ],
 )
 ```
 
 This would be imported as `import "google/protobuf/descriptor.proto"`
 given that the file
-`@com_github_google_protobuf/src/google/protobuf/descriptor.proto` is
+`@com_google_protobuf/src/google/protobuf/descriptor.proto` is
 in the package `google.protobuf`.
 
 [Question 2]: *Can the `cc_proto_library` rule "see" the generated protobuf files*?

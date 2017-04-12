@@ -41,19 +41,19 @@ DEPS = {
     # grpc++ expects "//external:protobuf"
     "protobuf": {
         "rule": "bind",
-        "actual": "@com_github_google_protobuf//:protobuf",
+        "actual": "@com_google_protobuf//:protobuf",
     },
 
     # grpc++ expects "//external:protobuf_clib"
     "protobuf_clib": {
         "rule": "bind",
-        "actual": "@com_github_google_protobuf//:protoc_lib",
+        "actual": "@com_google_protobuf//:protoc_lib",
     },
 
     # grpc++ expects "//external:protocol_compiler"
     "protocol_compiler": {
         "rule": "bind",
-        "actual": "@com_github_google_protobuf//:protoc",
+        "actual": "@com_google_protobuf//:protoc",
     },
 
     # grpc++ expects //external:nanopb

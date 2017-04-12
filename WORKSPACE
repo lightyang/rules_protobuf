@@ -138,8 +138,8 @@ java_proto_library(
         "google/api/label.proto",
     ],
     # Neither seem to be necessary, for either 3 langs
-    #imports = ["../../external/com_github_google_protobuf/src", "."],
-    #inputs = ["@com_github_google_protobuf//:well_known_protos"],
+    #imports = ["../../external/com_google_protobuf/src", "."],
+    #inputs = ["@com_google_protobuf//:well_known_protos"],
     verbose = 0,
 )
 go_proto_library(
