@@ -2,21 +2,25 @@ load("//protobuf:rules.bzl", "proto_compile", "proto_repositories")
 load("//cpp:deps.bzl", "DEPS")
 
 def cpp_proto_repositories(
+    with_grpc = True,
     lang_deps = DEPS,
     lang_requires = [
       "protobuf",
       "protobuf_clib",
       "gtest",
+    ], **kwargs):
+
+  if with_grpc:
+    lang_requires += [
       "com_github_grpc_grpc",
-      "com_github_madler_zlib",
       "zlib",
       "nanopb",
+      "protoc_gen_grpc_cpp",
       "boringssl",
       "libssl",
       "protocol_compiler",
-      "protoc_gen_grpc_cpp",
-    ], **kwargs):
-
+      "com_github_madler_zlib",
+    ]
   proto_repositories(lang_deps = lang_deps,
                      lang_requires = lang_requires,
                      **kwargs)
@@ -37,7 +41,7 @@ cc_proto_compile = cpp_proto_compile
 
 def cpp_proto_library(
     name,
-    langs = [str(Label("//cpp"))],
+    langs = [],
     protos = [],
     imports = [],
     inputs = [],
@@ -59,8 +63,12 @@ def cpp_proto_library(
     **kwargs):
 
   if with_grpc:
+    if len(langs) == 0:
+        langs = [str(Label("//cpp"))]
     compile_deps = GRPC_COMPILE_DEPS
   else:
+    if len(langs) == 0:
+        langs = [str(Label("//cpp:cpp_no_grpc"))]
     compile_deps = PB_COMPILE_DEPS
 
   proto_compile_args += {

@@ -10,3 +10,10 @@ proto_language(
     pb_file_extensions = ["_pb2.py"],
     supports_grpc = True,
 )
+
+proto_language(
+    name = "python_no_grpc",
+    pb_plugin_name = "python",
+    pb_file_extensions = ["_pb2.py"],
+    supports_grpc = False,
+)
