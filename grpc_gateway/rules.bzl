@@ -7,6 +7,8 @@ def grpc_gateway_proto_repositories(
     lang_deps = DEPS,
     lang_requires = [
       "com_github_grpc_ecosystem_grpc_gateway",
+      "com_github_grpc_ecosystem_grpc_gateway_googleapis",
+      "org_golang_google_genproto",
     ], **kwargs):
 
   go_proto_repositories(lang_deps = lang_deps,
@@ -16,7 +18,7 @@ def grpc_gateway_proto_repositories(
 GRPC_GATEWAY_DEPS = [
   "@com_github_grpc_ecosystem_grpc_gateway//runtime:go_default_library",
   "@com_github_grpc_ecosystem_grpc_gateway//utilities:go_default_library",
-  "@com_github_grpc_ecosystem_grpc_gateway//third_party/googleapis/google/api:go_default_library",
+  "@org_golang_google_genproto//googleapis/api/annotations:go_default_library",
   "@org_golang_google_grpc//codes:go_default_library",
   "@org_golang_google_grpc//grpclog:go_default_library",
   "@org_golang_google_grpc//:go_default_library",
@@ -28,7 +30,7 @@ def grpc_gateway_proto_library(
     name,
     pb_gateway = str(Label("//grpc_gateway:pb_gateway")),
     langs = [str(Label("//grpc_gateway"))],
-    prefix = Label("//:go_prefix", relative_to_caller_repository=True),
+    go_prefix = Label("//:go_prefix", relative_to_caller_repository=True),
     protos = [],
     imports = [],
     importmap = {},
@@ -66,7 +68,7 @@ def grpc_gateway_proto_library(
     "name": name + ".pb",
     "protos": protos,
     "deps": [dep + ".pb" for dep in proto_deps],
-    "prefix": prefix,
+    "go_prefix": go_prefix,
     "langs": [pb_gateway],
     "imports": imports,
     "importmap": importmap,
@@ -108,7 +110,7 @@ def grpc_gateway_proto_library(
     "name": name + ".gw",
     "protos": protos,
     "deps": [dep + ".pb" for dep in proto_deps],
-    "prefix": prefix,
+    "go_prefix": go_prefix,
     "langs": langs,
     "imports": imports,
     "importmap": importmap,
