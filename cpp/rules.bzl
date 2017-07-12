@@ -6,12 +6,12 @@ def cpp_proto_repositories(
     lang_deps = DEPS,
     lang_requires = [
       "protobuf",
-      "protobuf_clib",
-      "gtest",
     ], **kwargs):
 
   if with_grpc:
     lang_requires += [
+      "gtest",
+      "protobuf_clib",
       "com_github_grpc_grpc",
       "zlib",
       "nanopb",
@@ -26,10 +26,11 @@ def cpp_proto_repositories(
                      **kwargs)
 
 PB_COMPILE_DEPS = [
-    "//external:protobuf_clib",
+    "//external:protobuf",
 ]
 
-GRPC_COMPILE_DEPS = PB_COMPILE_DEPS + [
+GRPC_COMPILE_DEPS = [
+    "//external:protobuf_clib",
     "@com_github_grpc_grpc//:grpc++",
     "@com_github_grpc_grpc//:grpc++_reflection",
 ]

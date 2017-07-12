@@ -28,7 +28,6 @@ proto_language(
     name = "cpp_no_grpc",
     pb_plugin_name = "cpp",
     pb_compile_deps = [
-        "//external:protobuf_clib",
     ],
     pb_file_extensions = [
         ".pb.h",
