@@ -465,6 +465,11 @@ def _proto_compile_impl(ctx):
   # we'll use for the protoc invocation.  Usually this is '.', but if
   # not, its 'external/WORKSPACE'
   execdir = _get_external_root(ctx)
+  if ctx.attr.execdir:
+    if execdir == ".":
+        execdir = ctx.attr.execdir
+    else:
+        execdir += "/" + ctx.attr.execdir
 
   # Propagate proto deps compilation units.
   transitive_units = []
@@ -644,6 +649,7 @@ proto_compile = rule(
     "output_to_workspace": attr.bool(),
     "verbose": attr.int(),
     "with_grpc": attr.bool(default = True),
+    "execdir": attr.string(),
   },
   outputs = {
     "descriptor_set": "%{name}.descriptor_set",
