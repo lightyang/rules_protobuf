@@ -61,6 +61,7 @@ def cpp_proto_library(
     srcs = [],
     deps = [],
     verbose = 0,
+    execdir = "",
     **kwargs):
 
   if with_grpc:
@@ -84,6 +85,7 @@ def cpp_proto_library(
     "output_to_workspace": output_to_workspace,
     "verbose": verbose,
     "with_grpc": with_grpc,
+    "execdir": execdir,
   }
 
   if protoc:
