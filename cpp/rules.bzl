@@ -22,7 +22,7 @@ def cpp_proto_repositories(
       "boringssl",
       "libssl",
       "protoc_gen_grpc_cpp",
-    ], **kwargs):
+    ]
 
   rem = proto_repositories(lang_deps = lang_deps,
                            lang_requires = lang_requires,
