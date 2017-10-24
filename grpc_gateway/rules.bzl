@@ -22,6 +22,7 @@ GRPC_GATEWAY_DEPS = [
   "@org_golang_google_grpc//codes:go_default_library",
   "@org_golang_google_grpc//grpclog:go_default_library",
   "@org_golang_google_grpc//:go_default_library",
+  "@org_golang_google_grpc//status:go_default_library",
   "@org_golang_x_net//context:go_default_library",
   "@com_github_golang_glog//:go_default_library",
 ]
@@ -126,7 +127,7 @@ def grpc_gateway_proto_library(
   go_library(
     name = name,
     srcs = srcs + [name + ".pb"] + [name + ".gw"],
-    deps = list(set(deps + proto_deps + go_proto_deps + grpc_gateway_deps)),
+    deps = depset(deps + proto_deps + go_proto_deps + grpc_gateway_deps).to_list(),
     **kwargs)
 
 
